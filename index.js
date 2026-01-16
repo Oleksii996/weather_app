@@ -4,14 +4,19 @@ const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
 
-search.addEventListener("click", () => {
+const clearBtn = document.querySelector(".search-box .fa-xmark");
+
+function searchWeather() {
   const APIKey = "efd960ae82bc2e0fde37919c7b718a74";
   const city = document.querySelector(".search-box input").value;
 
   if (city === "") return;
 
+  clearBtn.style.display = "block";
+  search.style.display = "one";
+
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`,
   )
     .then((response) => response.json())
     .then((json) => {
@@ -31,7 +36,7 @@ search.addEventListener("click", () => {
       const temperature = document.querySelector(".weather-box .temperature");
       const description = document.querySelector(".weather-box .description");
       const humidity = document.querySelector(
-        ".weather-details .humidity span"
+        ".weather-details .humidity span",
       );
       const wind = document.querySelector(".weather-details .wind span");
 
@@ -71,4 +76,29 @@ search.addEventListener("click", () => {
       weatherDetails.classList.add("fadeIn");
       container.style.height = "590px";
     });
+}
+
+search.addEventListener("click", searchWeather);
+
+const input = document.querySelector(".search-box input");
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    searchWeather();
+  }
+});
+
+clearBtn.addEventListener("click", () => {
+  const input = document.querySelector(".search-box input");
+
+  input.value = "";
+  clearBtn.style.display = "none";
+  search.style.display = "block";
+
+  // ховаємо результати
+  weatherBox.style.display = "none";
+  weatherDetails.style.display = "none";
+  error404.style.display = "none";
+
+  container.style.height = "100px";
 });
