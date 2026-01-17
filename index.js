@@ -74,7 +74,7 @@ function searchWeather() {
       weatherDetails.style.display = "";
       weatherBox.classList.add("fadeIn");
       weatherDetails.classList.add("fadeIn");
-      container.style.height = "590px";
+      container.style.height = "fit-content";
     });
 }
 
@@ -82,12 +82,13 @@ search.addEventListener("click", searchWeather);
 
 const input = document.querySelector(".search-box input");
 
+// викликаємо по натисканню Enter
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     searchWeather();
   }
 });
-
+// викликаємо мишею
 clearBtn.addEventListener("click", () => {
   const input = document.querySelector(".search-box input");
 
