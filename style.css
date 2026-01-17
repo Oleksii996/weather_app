@@ -30,8 +30,9 @@ body {
 }
 
 .dev-info {
+  margin-left: auto;
   height: 50px;
-  width: 100%;
+  width: 50px;
   border-radius: 15px;
   background-color: #ffffff;
 }
