@@ -20,7 +20,7 @@ body {
   position: relative;
 
   height: 100px;
-  width: 400px;
+  width: 100%;
 
   padding: 25px 25px;
   overflow: hidden;
@@ -31,7 +31,7 @@ body {
 
 .dev-info {
   height: 50px;
-  width: 400px;
+  width: 100%;
   border-radius: 10px;
   background-color: #ffffff;
 }
