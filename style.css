@@ -9,6 +9,8 @@
 body {
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   background: #06283d;
@@ -18,12 +20,20 @@ body {
   position: relative;
 
   height: 100px;
+  width: 400px;
 
   padding: 25px 25px;
   overflow: hidden;
   border-radius: 10px;
   font-family: "Roboto", sans-serif;
-  transition: 0.6s ease-out;
+  transition: 0.6s ease-in-out;
+}
+
+.dev-info {
+  height: 50px;
+  width: 400px;
+  border-radius: 10px;
+  background-color: #ffffff;
 }
 
 /* #region search box */
@@ -92,7 +102,7 @@ body {
 .weather-box img {
   width: 60%;
   margin-top: 30px;
-  height: 100px;
+  height: 200px;
 
   background-color: rgb(255, 255, 255);
 }

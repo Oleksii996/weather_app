@@ -21,7 +21,7 @@ function searchWeather() {
     .then((response) => response.json())
     .then((json) => {
       if (json.cod === "404") {
-        container.style.height = "400px";
+        container.style.height = "fit-content";
         weatherBox.style.display = "none";
         weatherDetails.style.display = "none";
         error404.style.display = "block";
@@ -79,7 +79,6 @@ function searchWeather() {
 }
 
 search.addEventListener("click", searchWeather);
-
 const input = document.querySelector(".search-box input");
 
 // викликаємо по натисканню Enter
@@ -88,6 +87,7 @@ input.addEventListener("keydown", (e) => {
     searchWeather();
   }
 });
+
 // викликаємо мишею
 clearBtn.addEventListener("click", () => {
   const input = document.querySelector(".search-box input");
