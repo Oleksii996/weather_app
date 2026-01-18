@@ -1,19 +1,24 @@
 const container = document.querySelector(".container");
-const search = document.querySelector(".search-box button");
+const searchBtn = document.querySelector(".search-box .fa-magnifying-glass");
+const clearBtn = document.querySelector(".search-box .fa-xmark");
+
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
+const input = document.querySelector(".search-box input");
 
-const clearBtn = document.querySelector(".search-box .fa-xmark");
+// стартовий стан
+container.classList.add("collapsed");
 
+// робоча головна функція
 function searchWeather() {
   const APIKey = "efd960ae82bc2e0fde37919c7b718a74";
-  const city = document.querySelector(".search-box input").value;
+  const city = input.value.trim();
 
-  if (city === "") return;
+  if (!city) return;
 
   clearBtn.style.display = "block";
-  search.style.display = "one";
+  searchBtn.style.display = "none";
 
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`,
@@ -72,14 +77,36 @@ function searchWeather() {
 
       weatherBox.style.display = "";
       weatherDetails.style.display = "";
+
       weatherBox.classList.add("fadeIn");
       weatherDetails.classList.add("fadeIn");
-      container.style.height = "fit-content";
+
+      expandContainer();
     });
 }
 
-search.addEventListener("click", searchWeather);
-const input = document.querySelector(".search-box input");
+function showError() {
+  weatherBox.style.display = "none";
+  weatherDetails.style.display = "none";
+
+  error404.style.display = "block";
+  error404.classList.add("fadeIn");
+
+  expandContainer();
+}
+
+function expandContainer() {
+  container.classList.remove("collapsed");
+  container.classList.add("expanded");
+}
+
+function collapseContainer() {
+  container.classList.remove("expanded");
+  container.classList.add("collapsed");
+}
+
+// події
+searchBtn.addEventListener("click", searchWeather);
 
 // викликаємо по натисканню Enter
 input.addEventListener("keydown", (e) => {
@@ -90,16 +117,14 @@ input.addEventListener("keydown", (e) => {
 
 // викликаємо мишею
 clearBtn.addEventListener("click", () => {
-  const input = document.querySelector(".search-box input");
-
   input.value = "";
   clearBtn.style.display = "none";
-  search.style.display = "block";
+  searchBtn.style.display = "block";
 
   // ховаємо результати
   weatherBox.style.display = "none";
   weatherDetails.style.display = "none";
   error404.style.display = "none";
 
-  container.style.height = "100px";
+  collapseContainer();
 });
