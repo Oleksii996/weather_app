@@ -71,11 +71,8 @@ function showWeather(json) {
   humidity.innerHTML = `${json.main.humidity}%`;
   wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
 
-  weatherBox.style.display = "block";
+  weatherBox.style.display = "flex";
   weatherDetails.style.display = "flex";
-
-  weatherBox.classList.add("fadeIn");
-  weatherDetails.classList.add("fadeIn");
 
   expandContainer();
 }
@@ -84,7 +81,7 @@ function showError() {
   weatherBox.style.display = "none";
   weatherDetails.style.display = "none";
 
-  error404.style.display = "block";
+  error404.style.display = "flex";
   error404.classList.add("fadeIn");
 
   expandContainer();
