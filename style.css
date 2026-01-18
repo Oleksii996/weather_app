@@ -31,7 +31,10 @@ main {
   width: calc(100% - 30px);
   max-width: 450px;
 
-  padding: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
   overflow: hidden;
   border-radius: 15px;
   font-family: "Roboto", sans-serif;
@@ -118,12 +121,12 @@ main {
 
 /* #region weather box */
 .weather-box {
+  background-color: rgb(255, 255, 255);
   text-align: center;
 }
 .weather-box img {
   width: 60%;
   margin-top: 30px;
-  height: 200px;
 
   background-color: rgb(255, 255, 255);
 }
@@ -132,7 +135,7 @@ main {
   color: #06283d;
   font-size: 4rem;
   font-weight: 800;
-  margin-top: 30px;
+
   margin-left: -16px;
 }
 .weather-box .temperature span {
@@ -151,9 +154,11 @@ main {
 /* #region weather details */
 .weather-details {
   width: 100%;
+
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+
+  background-color: rgb(255, 255, 255);
 }
 .weather-details .humidity,
 .weather-details .wind {
