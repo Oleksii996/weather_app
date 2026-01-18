@@ -7,6 +7,8 @@ const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
 const input = document.querySelector(".search-box input");
 
+const authorBar = document.querySelector(".dev-info");
+
 // початковий стан
 container.classList.add("collapsed");
 
@@ -59,6 +61,10 @@ function showWeather(json) {
       break;
 
     case "Mist":
+      image.src = "img/mist.svg";
+      break;
+
+    case "Fog":
       image.src = "img/mist.svg";
       break;
 
@@ -120,6 +126,7 @@ clearBtn.addEventListener("click", () => {
     weatherBox.style.display = "none";
     weatherDetails.style.display = "none";
     error404.style.display = "none";
+    error404.classList.remove("fadeIn");
 
     container.removeEventListener("transitionend", onTransitionEnd);
   };
