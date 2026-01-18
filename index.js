@@ -47,19 +47,19 @@ function showWeather(json) {
       break;
 
     case "Rain":
-      image.src = "img/rain.png";
+      image.src = "img/rain.svg";
       break;
 
     case "Snow":
-      image.src = "img/snow.png";
+      image.src = "img/snow.svg";
       break;
 
     case "Clouds":
       image.src = "img/cloud.svg";
       break;
 
-    case "Haze":
-      image.src = "img/mist.png";
+    case "Mist":
+      image.src = "img/mist.svg";
       break;
 
     default:
