@@ -321,7 +321,7 @@ main {
 
   font-family: "Roboto", sans-serif;
   color: #ffffff;
-  opacity: 10%;
+  opacity: 75%;
 }
 .fadeIn {
   animation: 0.5s fadeIn forwards;
