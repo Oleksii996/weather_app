@@ -52,8 +52,15 @@ main {
 }
 /* #endregion */
 
-/* #region dev-info */
+.titel-text {
+  font-family: "Roboto", sans-serif;
 
+  color: #ffffff;
+  align-self: flex-end;
+  opacity: 75%;
+  margin-right: 15px;
+}
+/* #region dev-info */
 .dev-info {
   display: flex;
   flex-direction: row;
@@ -304,13 +311,17 @@ main {
 }
 /* #endregion */
 
-.op-name {
-  font-family: "Roboto", sans-serif;
+.final-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 
+  width: calc(100% - 30px);
+
+  font-family: "Roboto", sans-serif;
   color: #ffffff;
-  align-self: flex-end;
   opacity: 10%;
-  margin-right: 15px;
 }
 .fadeIn {
   animation: 0.5s fadeIn forwards;
