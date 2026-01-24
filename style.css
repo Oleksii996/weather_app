@@ -160,6 +160,7 @@ main {
   color: #06283d;
   flex: 1; /* займає весь вільний простір */
   min-width: 0; /* ❗ ОБОВʼЯЗКОВО для стискання */
+  margin-right: 25px;
 
   font-size: 24px;
   font-weight: 500;
@@ -192,6 +193,7 @@ main {
   color: #fff;
   background: #06283d;
 }
+
 .search-box button.fa-xmark {
   margin-left: 10px;
 }
