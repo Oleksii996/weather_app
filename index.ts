@@ -1,28 +1,29 @@
-var container = document.querySelector(".container");
-var searchBtn = document.querySelector(".search-box .fa-magnifying-glass");
-var clearBtn = document.querySelector(".search-box .fa-xmark");
-var weatherBox = document.querySelector(".weather-box");
-var weatherDetails = document.querySelector(".weather-details");
-var error404 = document.querySelector(".not-found");
-var input = document.querySelector(".search-box input");
-var authorBar = document.querySelector(".dev-info");
+const container = document.querySelector(".container") as HTMLElement;
+const searchBtn = document.querySelector(".search-box .fa-magnifying-glass") as HTMLElement;
+const clearBtn = document.querySelector(".search-box .fa-xmark") as HTMLElement;
+
+const weatherBox = document.querySelector(".weather-box") as HTMLElement;
+const weatherDetails = document.querySelector(".weather-details") as HTMLElement;
+const error404 = document.querySelector(".not-found") as HTMLElement;
+const input = document.querySelector(".search-box input") as HTMLInputElement;
+
+const authorBar = document.querySelector(".dev-info") as HTMLElement;
+
 // початковий стан
 container.classList.add("collapsed");
+
 // пошук
-function searchWeather() {
-  var APIKey = "efd960ae82bc2e0fde37919c7b718a74";
-  var city = input.value.trim();
+function searchWeather(): void {
+  const APIKey: string = "efd960ae82bc2e0fde37919c7b718a74";
+  const city: string = input.value.trim();
+
   if (!city) return;
+
   clearBtn.style.display = "block";
-  fetch(
-    "https://api.openweathermap.org/data/2.5/weather?q="
-      .concat(city, "&units=metric&appid=")
-      .concat(APIKey),
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (json) {
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+    .then((response) => response.json())
+    .then((json: any) => {
       if (json.cod === "404" || json.cod === 404) {
         showError();
       } else {
@@ -30,15 +31,18 @@ function searchWeather() {
       }
     });
 }
+
 // успішний результат
-function showWeather(json) {
+function showWeather(json: any): void {
   error404.style.display = "none";
   error404.classList.remove("fadeIn");
-  var image = document.querySelector(".weather-box img");
-  var temperature = document.querySelector(".weather-box .temperature");
-  var description = document.querySelector(".weather-box .description");
-  var humidity = document.querySelector(".weather-details .humidity span");
-  var wind = document.querySelector(".weather-details .wind span");
+
+  const image = document.querySelector(".weather-box img") as HTMLImageElement;
+  const temperature = document.querySelector(".weather-box .temperature") as HTMLElement;
+  const description = document.querySelector(".weather-box .description") as HTMLElement;
+  const humidity = document.querySelector(".weather-details .humidity span") as HTMLElement;
+  const wind = document.querySelector(".weather-details .wind span") as HTMLElement;
+
   switch (json.weather[0].main) {
     case "Clear":
       image.src = "img/clear.svg";
@@ -59,52 +63,65 @@ function showWeather(json) {
     default:
       image.src = "";
   }
-  temperature.innerHTML = "".concat(
-    parseInt(json.main.temp),
-    "<span>\u00B0C</span>",
-  );
+
+  temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
   description.innerHTML = json.weather[0].description;
-  humidity.innerHTML = "".concat(json.main.humidity, "%");
-  wind.innerHTML = "".concat(parseInt(json.wind.speed), "Km/h");
+  humidity.innerHTML = `${json.main.humidity}%`;
+  wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+
   weatherBox.style.display = "flex";
   weatherDetails.style.display = "flex";
+
   expandContainer();
 }
+
 // помилка
-function showError() {
+function showError(): void {
   weatherBox.style.display = "none";
   weatherDetails.style.display = "none";
+
   error404.style.display = "flex";
   error404.classList.add("fadeIn");
+
   expandContainer();
 }
-function expandContainer() {
+
+function expandContainer(): void {
   container.classList.remove("collapsed");
   container.classList.add("expanded");
 }
-function collapseContainer() {
+
+function collapseContainer(): void {
   container.classList.remove("expanded");
   container.classList.add("collapsed");
 }
+
 // події
 searchBtn.addEventListener("click", searchWeather);
-input.addEventListener("keydown", function (e) {
+
+input.addEventListener("keydown", (e: KeyboardEvent) => {
   if (e.key === "Enter") {
     searchWeather();
   }
 });
-clearBtn.addEventListener("click", function () {
+
+clearBtn.addEventListener("click", () => {
   input.value = "";
   clearBtn.style.display = "none";
   searchBtn.style.display = "block";
+
   collapseContainer();
-  var onTransitionEnd = function (e) {
+
+  const onTransitionEnd = (e: TransitionEvent) => {
     if (e.propertyName !== "max-height") return;
+
     weatherBox.style.display = "none";
     weatherDetails.style.display = "none";
     error404.style.display = "none";
     error404.classList.remove("fadeIn");
+
     container.removeEventListener("transitionend", onTransitionEnd);
   };
+
   container.addEventListener("transitionend", onTransitionEnd);
 });
